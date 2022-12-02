@@ -1,4 +1,4 @@
-module github.com/SoloPeople/crawler
+module github.com/solopeople/crawler/v1
 
 go 1.19
 
