@@ -15,8 +15,8 @@ cra.Url = "爬取地址"
 cra.Request("get") // 设置请求方法get/post...
 
 for _,v := range cra.Results{
-    // v 即为结果 []byte
-    // 用json.Unmarshal()自由处理
+// v 即为结果 []byte
+// 用json.Unmarshal()自由处理
 }
 ```
 
@@ -30,8 +30,8 @@ cra.Urls = [...]
 cra.Requests("get") // 设置请求方法get/post...
 
 for _,v := range cra.Results{
-    // v 即为结果 []byte
-    // 用json.Unmarshal()自由处理
+// v 即为结果 []byte
+// 用json.Unmarshal()自由处理
 }
 ```
 
@@ -42,8 +42,11 @@ var cra crawler.Crawler
 cra.Url = "爬取地址"
 cra.RequestOnHtml("div[class=...]")
 
-cra.DOM[0].ChildTexts("a") // 获取节点下标签a文本
-cra.DOM[0].ChildAttrs("a", "href") // 获取节点下a标签的href
+for _,v := range cra.Results{
+v.ChildTexts("a") // 获取节点下标签a文本
+v.ChildAttrs("a", "href") // 获取节点下a标签的href
+...  // 具体方法和colly无差别
+}
 ```
 
 批量获取DOM
@@ -56,9 +59,9 @@ cra.Urls = [...]
 cra.RequestsOnHtml("div[class=...]")
 
 for _,v := range cra.DOM{
-    v.ChildTexts("a")			// 获取节点下标签a文本
-    v.ChildAttrs("a", "href")	// 获取节点下a标签的href
-    ... 						// 具体方法和colly无差别
+v.ChildTexts("a") // 获取节点下标签a文本
+v.ChildAttrs("a", "href") // 获取节点下a标签的href
+...  // 具体方法和colly无差别
 }
 ```
 
