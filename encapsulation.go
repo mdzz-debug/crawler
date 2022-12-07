@@ -1,6 +1,7 @@
 package crawler
 
 import (
+	"compress/gzip"
 	"errors"
 	"github.com/gocolly/colly/v2"
 	"io"
@@ -131,6 +132,21 @@ func (c *Crawler) client(method string, url string) ([]byte, error) {
 			return
 		}
 	}(resp.Body)
+
+	gzipFlag := false
+	for k, v := range resp.Header {
+		if strings.ToLower(k) == "content-encoding" && strings.ToLower(v[0]) == "gzip" {
+			gzipFlag = true
+		}
+	}
+	if gzipFlag {
+		gr, err := gzip.NewReader(resp.Body)
+		defer gr.Close()
+		if err != nil {
+			return nil, err
+		}
+		resp.Body = gr
+	}
 	backData, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err

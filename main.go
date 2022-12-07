@@ -78,5 +78,5 @@ func (c *Crawler) RequestsOnHtml(dom string) (successNum int, errorNum int) {
 	go c.allocateAcquisition(0, true)
 	c.wait()
 
-	return len(c.Results), len(c.FailUrl)
+	return len(c.DOM), len(c.FailUrl)
 }

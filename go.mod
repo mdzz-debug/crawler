@@ -1,4 +1,4 @@
-module github.com/SoloPeople/crawler
+module github.com/mdzz-debug/crawler
 
 go 1.19
 
